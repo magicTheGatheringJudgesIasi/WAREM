@@ -1,0 +1,15 @@
+<div data-ng-controller="MainController as vm">
+  <input data-ng-model="vm.searchQuery"></input>
+  
+  <div class="row container-fluid">
+    <div class="col-md-4">
+      <table class="table table-striped">
+        <tbody>
+          <tr data-ng-repeat="player in vm.players | filter:vm.searchQuery track by player.dci">
+            <td>{{player.name}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
