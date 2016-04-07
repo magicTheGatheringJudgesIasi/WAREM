@@ -1,0 +1,19 @@
+<div class="container-fluid" data-ng-controller="EventController as vm">
+	<div class="enlistedPlayers" data-ng-show="!vm.isEventRunning">
+		<h3>Enlisted players:</h3>
+		<span class="enlistedPlayer btn btn-default" data-ng-repeat="player in vm.enlistedPlayers track by $index">
+			{{player.name}} <span class="btn btn-danger" data-ng-click="vm.removePlayerByIndex($index)"> X </span>
+		</span>
+
+		<span class="btn btn-success" data-ng-show="vm.enlistedPlayers.length > 7" data-ng-click="vm.startEvent();$event.$stopPropagation();">Start event!</span>
+	</div>
+	
+	<div class="eventSittings" data-ng-show="vm.isEventRunning">
+		<h3>Current round is: {{vm.currentRound}}</h3>
+		<div class="sitting" data-ng-repeat="sitting in vm.sittings" data-ng-show="sitting.firstPlayer && sitting.secondPlayer">
+			<span class="firstSeatedPlayer">{{sitting.firstPlayer.name}}</span> - <span class="secondSeatedPlayer">{{sitting.secondPlayer.name}}</span> - <span class="seatNumber">table: {{$index + 1}}</span>
+		</div>
+
+		<span class="byePlayer" data-ng-show="vm.byePlayer">Bye {{vm.byePlayer.name}}</span>
+	</div>
+</div>
